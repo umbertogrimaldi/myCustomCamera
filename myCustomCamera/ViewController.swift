@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
     var image: UIImage?
-    var myPhotoArray: [UIImage] = []
+
+    var myPhotoSession = PhotoShared.shared.myPhotoArray
 
     
     override func viewDidLoad() {
@@ -90,13 +91,13 @@ class ViewController: UIViewController {
         let settings = AVCapturePhotoSettings()
         photoOutput?.capturePhoto(with: settings, delegate: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showPhotoSegue" {
-            let photoVC = segue.destination as! PreviewViewController
-            photoVC.myPhotoArray = self.myPhotoArray
-        }
-    }
+ 
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showPhotoSegue" {
+//            let photoVC = segue.destination as! PreviewViewController
+//            photoVC.myPhotoArray = self.myPhotoArray
+//        }
+//    }
     
     @IBAction func doneButton(_ sender: Any) {
         performSegue(withIdentifier: "showPhotoSegue", sender: nil)
@@ -116,8 +117,8 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
         if let imageData = photo.fileDataRepresentation() {
             print(imageData)
             image = UIImage(data: imageData)
-            myPhotoArray.append(image!)
-            print(myPhotoArray.count)
+            myPhotoSession.append(image!)
+            print(myPhotoSession.count)
 //            performSegue(withIdentifier: "showPhotoSegue", sender: nil)
         }
     }
