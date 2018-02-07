@@ -22,8 +22,9 @@ class ViewController: UIViewController {
     
     var image: UIImage?
 
-    var myPhotoSession = PhotoShared.shared.myPhotoArray
-
+    
+//    var myPhotoSession: [UIImage] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class ViewController: UIViewController {
         startRunningCaptureSession()
     }
     
+    
+    //    MARK:- FUNCTIONS
     
     func setupCaptureSession() {
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
@@ -53,8 +56,7 @@ class ViewController: UIViewController {
                 frontCamera = device
             }
         }
-        
-        currentDevice = backCamera
+        currentDevice = frontCamera
     }
     
     
@@ -86,6 +88,17 @@ class ViewController: UIViewController {
     }
     
     
+    //    MARK: - buttons
+    
+    @IBAction func changeCamera(_ sender: Any) {
+        
+        if currentDevice == backCamera {
+            currentDevice = frontCamera
+        } else {
+            currentDevice = backCamera
+        }
+    }
+    
 
     @IBAction func cameraButton(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
@@ -95,7 +108,7 @@ class ViewController: UIViewController {
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "showPhotoSegue" {
 //            let photoVC = segue.destination as! PreviewViewController
-//            photoVC.myPhotoArray = self.myPhotoArray
+//
 //        }
 //    }
     
@@ -108,17 +121,18 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 
+
+//MARK:- Extension ViewController
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             print(imageData)
             image = UIImage(data: imageData)
-            myPhotoSession.append(image!)
-            print(myPhotoSession.count)
+            PhotoShared.shared.myPhotoArray.append(image!)
+            print(PhotoShared.shared.myPhotoArray.count)
 //            performSegue(withIdentifier: "showPhotoSegue", sender: nil)
         }
     }

@@ -10,31 +10,19 @@ import UIKit
 
 class PreviewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var myPhotoArray: [UIImage] = []
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myPhotoArray.count
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! UICollectionViewCell
-        let photoCell = cell.viewWithTag(1) as! UIImageView
-        photoCell.image = myPhotoArray[indexPath.row]
-        
-        return cell
-    }
-    
-    
-    var image: UIImage!
+    @IBOutlet weak var myPhotoCollectionView: UICollectionView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var mySessionCollectionView: UIImageView!
+
     
+    
+//    var image: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(myPhotoArray.count)
+        print(PhotoShared.shared.myPhotoArray.count)
+        myPhotoCollectionView.delegate = self
+        myPhotoCollectionView.dataSource = self
         
 //        photo.image = self.image
     }
@@ -42,15 +30,39 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        
+        PhotoShared.shared.myPhotoArray.removeAll()
+
+//        for x in 0...(PhotoShared.shared.myPhotoArray.count) - 1 {
+//            PhotoShared.shared.myPhotoArray.remove(at: x)
+//        }
     }
     
     
     @IBAction func saveButton(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         dismiss(animated: true, completion: nil)
     }
     
-
+    //    MARK:- Collection View
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return PhotoShared.shared.myPhotoArray.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! UICollectionViewCell
+        let photoCell = cell.viewWithTag(1) as! UIImageView
+        photoCell.image = PhotoShared.shared.myPhotoArray[indexPath.row]
+        
+        return cell
+    }
+    
+    
+    //    MARK:-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
