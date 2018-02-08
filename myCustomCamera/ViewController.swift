@@ -56,7 +56,7 @@ class ViewController: UIViewController {
                 frontCamera = device
             }
         }
-        currentDevice = frontCamera
+        currentDevice = backCamera
     }
     
     
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         if currentDevice == backCamera {
             currentDevice = frontCamera
         } else {
-            currentDevice = backCamera
+            currentDevice = frontCamera
         }
     }
     

@@ -114,11 +114,13 @@
                                     <constraint firstAttribute="height" constant="60" id="oFV-wo-7dF"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5nJ-mA-5eh">
-                                <rect key="frame" x="0.0" y="545" width="375" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5nJ-mA-5eh">
+                                <rect key="frame" x="0.0" y="585" width="375" height="82"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kmu-cU-u7G">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="ckC-WF-ycJ"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kmu-cU-u7G" customClass="CenteredItemCollectionViewFlowLayout" customModule="myCustomCamera" customModuleProvider="target">
                                     <size key="itemSize" width="74" height="78"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -149,9 +151,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="5nJ-mA-5eh" firstAttribute="trailing" secondItem="xr1-lr-gkK" secondAttribute="trailing" id="068-4q-MVm"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="leading" secondItem="QHE-uB-hOG" secondAttribute="leading" id="Cq8-Dm-T3I"/>
+                            <constraint firstItem="5nJ-mA-5eh" firstAttribute="bottom" secondItem="LEG-nB-7LE" secondAttribute="bottom" id="GKc-jI-NWo"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="trailing" secondItem="QHE-uB-hOG" secondAttribute="trailing" id="ME7-hT-39v"/>
                             <constraint firstItem="xr1-lr-gkK" firstAttribute="leading" secondItem="QHE-uB-hOG" secondAttribute="leading" id="MiH-l1-xjj"/>
+                            <constraint firstItem="5nJ-mA-5eh" firstAttribute="leading" secondItem="LEG-nB-7LE" secondAttribute="leading" id="Sdp-KV-3Py"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="top" secondItem="RIu-xe-tvk" secondAttribute="top" id="Zxg-3d-QbU"/>
                             <constraint firstItem="xr1-lr-gkK" firstAttribute="top" secondItem="RIu-xe-tvk" secondAttribute="top" id="nXk-pu-Wpl"/>
                             <constraint firstItem="xr1-lr-gkK" firstAttribute="trailing" secondItem="QHE-uB-hOG" secondAttribute="trailing" id="vq8-Zl-TB2"/>

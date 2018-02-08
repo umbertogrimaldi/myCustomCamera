@@ -14,17 +14,28 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var mySessionCollectionView: UIImageView!
 
-    
+    var centerPoint: CGPoint = CGPoint(x: 200, y: 400)
     
 //    var image: UIImage!
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        var insets = self.myPhotoCollectionView.contentInset
+        let value = (self.view.frame.size.width - (self.myPhotoCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width) * 0.5
+        insets.left = value
+        insets.right = value
+        self.myPhotoCollectionView.contentInset = insets
+        self.myPhotoCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
+        myPhotoCollectionView.backgroundColor = UIColor.white
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print(PhotoShared.shared.myPhotoArray.count)
         myPhotoCollectionView.delegate = self
         myPhotoCollectionView.dataSource = self
-        
-//        photo.image = self.image
     }
     
     
@@ -32,10 +43,6 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
         dismiss(animated: true, completion: nil)
         
         PhotoShared.shared.myPhotoArray.removeAll()
-
-//        for x in 0...(PhotoShared.shared.myPhotoArray.count) - 1 {
-//            PhotoShared.shared.myPhotoArray.remove(at: x)
-//        }
     }
     
     
@@ -52,15 +59,53 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
         let photoCell = cell.viewWithTag(1) as! UIImageView
         photoCell.image = PhotoShared.shared.myPhotoArray[indexPath.row]
+        cell.backgroundColor = .white
         
         return cell
     }
     
     
     //    MARK:-
+    
+    private func findCenterIndex() {
+        let center = view.convert(self.myPhotoCollectionView.center, to: self.myPhotoCollectionView)
+        if let index = myPhotoCollectionView!.indexPathForItem(at:center) {
+            print(index)
+            photo.image = PhotoShared.shared.myPhotoArray[index.row]
+        }
+        print("index not found")
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        findCenterIndex()
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        findCenterIndex()
+    }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        findCenterIndex()
+    }
+    
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        findCenterIndex()
+    }
+    
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        findCenterIndex()
+    }
+    
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        findCenterIndex()
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -80,3 +125,6 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     */
 
 }
+
+
+
