@@ -11,6 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var dismissButton: UIButton!
     var captureSession = AVCaptureSession()
     var frontCamera: AVCaptureDevice?
     var backCamera: AVCaptureDevice?
@@ -116,6 +117,9 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "showPhotoSegue", sender: nil)
     }
     
+    @IBAction func dismissButton(_ sender: Any) {
+        dismissButton(<#T##sender: Any##Any#>)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -124,7 +128,7 @@ class ViewController: UIViewController {
 }
 
 
-//MARK:- Extension ViewController
+//MARK:- Extension ViewController to take photo
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {

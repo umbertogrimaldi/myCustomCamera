@@ -68,7 +68,7 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
-    //    MARK:-
+    //    MARK:- Collection View (Scroll View) -
     
     private func findCenterIndex() {
         let center = view.convert(self.myPhotoCollectionView.center, to: self.myPhotoCollectionView)
@@ -112,17 +112,6 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
