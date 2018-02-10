@@ -14,6 +14,8 @@
 		8317C373202898B5004BDB8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317C371202898B5004BDB8B /* LaunchScreen.storyboard */; };
 		8317C37B20289CE0004BDB8B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C37A20289CE0004BDB8B /* PreviewViewController.swift */; };
 		8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C37C2029FB42004BDB8B /* sharedPhoto.swift */; };
+		8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */; };
+		8317C383202CA4AD004BDB8B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C382202CA4AD004BDB8B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		8317C374202898B5004BDB8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8317C37A20289CE0004BDB8B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		8317C37C2029FB42004BDB8B /* sharedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedPhoto.swift; sourceTree = "<group>"; };
+		8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		8317C382202CA4AD004BDB8B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 			isa = PBXGroup;
 			children = (
 				8317C368202898B5004BDB8B /* AppDelegate.swift */,
+				8317C382202CA4AD004BDB8B /* HomeViewController.swift */,
 				8317C36A202898B5004BDB8B /* ViewController.swift */,
 				8317C37A20289CE0004BDB8B /* PreviewViewController.swift */,
-				8317C37C2029FB42004BDB8B /* sharedPhoto.swift */,
 				8317C36C202898B5004BDB8B /* Main.storyboard */,
+				8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */,
+				8317C37C2029FB42004BDB8B /* sharedPhoto.swift */,
 				8317C36F202898B5004BDB8B /* Assets.xcassets */,
 				8317C371202898B5004BDB8B /* LaunchScreen.storyboard */,
 				8317C374202898B5004BDB8B /* Info.plist */,
@@ -144,8 +150,10 @@
 			files = (
 				8317C36B202898B5004BDB8B /* ViewController.swift in Sources */,
 				8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */,
+				8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */,
 				8317C369202898B5004BDB8B /* AppDelegate.swift in Sources */,
 				8317C37B20289CE0004BDB8B /* PreviewViewController.swift in Sources */,
+				8317C383202CA4AD004BDB8B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
