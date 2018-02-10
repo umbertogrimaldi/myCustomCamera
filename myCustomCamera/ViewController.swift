@@ -23,16 +23,29 @@ class ViewController: UIViewController {
     
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     let photoSettings = AVCapturePhotoSettings()
+    var flashMode = AVCaptureDevice.FlashMode.off
+    
+    
     
     var image: UIImage?
 
     
-//    var myPhotoSession: [UIImage] = []
+    @IBOutlet weak var flashButton: UIButton!{
+        didSet{
+            flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
+        }
+    }
     
+    
+    @IBOutlet weak var switchCameraButton: UIButton!
+    
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
@@ -62,8 +75,17 @@ class ViewController: UIViewController {
             } else if device.position == AVCaptureDevice.Position.front {
                 frontCamera = device
             }
+            
+            try? device.lockForConfiguration()
+            if (device.isFocusModeSupported(.continuousAutoFocus)){
+                device.focusMode = .continuousAutoFocus
+            }else if (device.isFocusModeSupported(.autoFocus)){
+                device.focusMode = .autoFocus
+            }
+            
+            device.unlockForConfiguration()
         }
-//        currentDevice = frontCamera
+        
     }
     
     
@@ -77,6 +99,7 @@ class ViewController: UIViewController {
             if captureSession.canAddInput(self.backCameraInput!) { captureSession.addInput(self.backCameraInput!) }else {print ("Cannot add back input")}
 
             self.currentCameraPosition = .rear
+            self.switchCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
         }
 
             else if let frontCamera = self.frontCamera {
@@ -86,11 +109,9 @@ class ViewController: UIViewController {
             else { print ("cannot add front input")}
             
             self.currentCameraPosition = .front
+            self.switchCameraButton.setImage(#imageLiteral(resourceName: "Front Camera Icon"), for: .normal)
         }
         
-        
-//            let captureDeviceInput = try AVCaptureDeviceInput.init(device: currentDevice!)
-//            captureSession.addInput(captureDeviceInput)
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
@@ -116,6 +137,17 @@ class ViewController: UIViewController {
     
     @IBAction func changeCamera(_ sender: Any) {
         try? self.switchCameras()
+        switch self.currentCameraPosition{
+        case .some(.front):
+            switchCameraButton.setImage(#imageLiteral(resourceName: "Front Camera Icon"), for: .normal)
+            
+        case .some(.rear):
+            switchCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
+            
+        case .none:
+            return
+            
+        }
     }
         
 
@@ -128,7 +160,8 @@ class ViewController: UIViewController {
             
             
             func switchToFrontCamera() throws {
-                guard let inputs = captureSession.inputs as? [AVCaptureInput], let rearCameraInput = self.backCameraInput, inputs.contains(rearCameraInput),
+                    let inputs = captureSession.inputs as [AVCaptureInput]
+                    guard let rearCameraInput = self.backCameraInput, inputs.contains(rearCameraInput),
                     let frontCamera = self.frontCamera else {
                        print("Error3")
                         return}
@@ -151,7 +184,7 @@ class ViewController: UIViewController {
             }
             
             func switchToRearCamera() throws {
-                guard let inputs = captureSession.inputs as? [AVCaptureInput]else {print ("no inputs"); return}
+                let inputs = captureSession.inputs as [AVCaptureInput]
                 guard let frontCameraInput = self.frontCameraInput else{print("no front camera input"); return}
                 guard inputs.contains(frontCameraInput)else {print ("No contains"); return}
                 guard let rearCamera = self.backCamera else {
@@ -186,26 +219,28 @@ class ViewController: UIViewController {
         
     
 
+    @IBOutlet weak var cameraFrame: UIImageView!
     
 
     @IBAction func cameraButton(_ sender: Any) {
-        photoSettings.flashMode = .on
-         let uniCameraSetting = AVCapturePhotoSettings.init(from: photoSettings)
+        photoSettings.flashMode = self.flashMode
+        let uniCameraSetting = AVCapturePhotoSettings.init(from: photoSettings)
         photoOutput?.capturePhoto(with: uniCameraSetting, delegate: self)
     }
+    
  
     @IBAction func flashButton(_ sender: Any) {
-        if photoSettings.flashMode == .on {
-            photoSettings.flashMode = .off
+        if self.flashMode == .on {
+           self.flashMode = .off
+            flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
         } else {
-            photoSettings.flashMode = .on
+            self.flashMode = .on
+            flashButton.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
         }
     }
     
     
-    @IBAction func doneButton(_ sender: Any) {
-        performSegue(withIdentifier: "showPhotoSegue", sender: nil)
-    }
+
     
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)

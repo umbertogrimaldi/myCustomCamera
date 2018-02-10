@@ -39,7 +39,7 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     
-    @IBAction func cancelButton(_ sender: Any) {
+    @IBAction func retakeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         
         PhotoShared.shared.myPhotoArray.removeAll()
