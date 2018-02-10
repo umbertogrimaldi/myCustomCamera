@@ -11,6 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var cameraFrame: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
     var captureSession = AVCaptureSession()
     var frontCamera: AVCaptureDevice?
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     var photoOutput: AVCapturePhotoOutput?
     
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
+    let photoSettings = AVCapturePhotoSettings()
     
     var image: UIImage?
 
@@ -35,6 +37,7 @@ class ViewController: UIViewController {
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
+       
     }
     
     
@@ -78,8 +81,7 @@ class ViewController: UIViewController {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        cameraPreviewLayer?.frame = self.view
-        .frame
+        cameraPreviewLayer?.frame = cameraFrame.frame
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     
@@ -87,7 +89,6 @@ class ViewController: UIViewController {
     func startRunningCaptureSession() {
         captureSession.startRunning()
     }
-    
     
     //    MARK: - buttons
     
@@ -102,24 +103,29 @@ class ViewController: UIViewController {
     
 
     @IBAction func cameraButton(_ sender: Any) {
-        let settings = AVCapturePhotoSettings()
-        photoOutput?.capturePhoto(with: settings, delegate: self)
+        photoSettings.flashMode = .on
+         let uniCameraSetting = AVCapturePhotoSettings.init(from: photoSettings)
+        photoOutput?.capturePhoto(with: uniCameraSetting, delegate: self)
     }
  
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showPhotoSegue" {
-//            let photoVC = segue.destination as! PreviewViewController
-//
-//        }
-//    }
+    @IBAction func flashButton(_ sender: Any) {
+        if photoSettings.flashMode == .on {
+            photoSettings.flashMode = .off
+        } else {
+            photoSettings.flashMode = .on
+        }
+    }
+    
     
     @IBAction func doneButton(_ sender: Any) {
         performSegue(withIdentifier: "showPhotoSegue", sender: nil)
     }
     
     @IBAction func dismissButton(_ sender: Any) {
-        dismissButton(<#T##sender: Any##Any#>)
+        dismiss(animated: true, completion: nil)
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -132,12 +138,12 @@ class ViewController: UIViewController {
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+       
         if let imageData = photo.fileDataRepresentation() {
             print(imageData)
             image = UIImage(data: imageData)
             PhotoShared.shared.myPhotoArray.append(image!)
             print(PhotoShared.shared.myPhotoArray.count)
-//            performSegue(withIdentifier: "showPhotoSegue", sender: nil)
         }
     }
 }
