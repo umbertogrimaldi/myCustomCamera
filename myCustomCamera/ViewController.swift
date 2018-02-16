@@ -51,16 +51,26 @@ class ViewController: UIViewController {
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
+        navigationController?.delegate = self
         
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tabBarController?.tabBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
+//    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
+    }
     
     //    MARK:- FUNCTIONS
     
     func setupCaptureSession() {
-        
             captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        
     }
     
     
@@ -156,8 +166,6 @@ class ViewController: UIViewController {
             
             captureSession.beginConfiguration()
             
-          
-            
             
             func switchToFrontCamera() throws {
                     let inputs = captureSession.inputs as [AVCaptureInput]
@@ -216,7 +224,6 @@ class ViewController: UIViewController {
             
             captureSession.commitConfiguration()
         }
-        
     
 
     @IBOutlet weak var cameraFrame: UIImageView!
@@ -240,11 +247,12 @@ class ViewController: UIViewController {
     }
     
     
-
-    
     @IBAction func dismissButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MySelfies") as! MySelfiesViewController
+//        self.present(nextViewController, animated:true, completion:nil)
+        self.tabBarController?.selectedIndex = 0
     }
     
     
@@ -273,5 +281,20 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
 public enum CameraPosition {
     case front
     case rear
+}
+
+
+// MARK:- Hidden TabBar and Nav bar
+
+extension ViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        if viewController is ViewController {
+            viewController.tabBarController?.tabBar.isHidden = true
+            viewController.navigationController?.navigationBar.isHidden = true
+        }
+        
+    }
 }
 
