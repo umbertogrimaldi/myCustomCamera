@@ -26,20 +26,19 @@ class ViewController: UIViewController {
     var flashMode = AVCaptureDevice.FlashMode.off
     
     var image: UIImage?
-
     
-    @IBOutlet weak var flashButton: UIButton!{
+
+    //    MARK:- Outlets
+    @IBOutlet weak var flashButton: UIButton! {
         didSet{
             flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
         }
     }
     
-    
     @IBOutlet weak var switchCameraButton: UIButton!
     
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
+    @IBOutlet weak var cameraFrame: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +79,9 @@ class ViewController: UIViewController {
             try? device.lockForConfiguration()
             if (device.isFocusModeSupported(.continuousAutoFocus)){
                 device.focusMode = .continuousAutoFocus
-            }else if (device.isFocusModeSupported(.autoFocus)){
+            } else if (device.isFocusModeSupported(.autoFocus)){
                 device.focusMode = .autoFocus
             }
-            
             device.unlockForConfiguration()
         }
     }
@@ -99,9 +97,8 @@ class ViewController: UIViewController {
 
             self.currentCameraPosition = .rear
             self.switchCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
-        }
-
-            else if let frontCamera = self.frontCamera {
+            
+        } else if let frontCamera = self.frontCamera {
             self.frontCameraInput = try? AVCaptureDeviceInput(device: frontCamera)
             
             if captureSession.canAddInput(self.frontCameraInput!) { captureSession.addInput(self.frontCameraInput!) }
@@ -114,7 +111,6 @@ class ViewController: UIViewController {
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
-       
     }
     
     
@@ -130,6 +126,7 @@ class ViewController: UIViewController {
     func startRunningCaptureSession() {
         captureSession.startRunning()
     }
+    
     
     //    MARK: - buttons
     
@@ -192,8 +189,8 @@ class ViewController: UIViewController {
                     captureSession.addInput(self.backCameraInput!)
                     
                     self.currentCameraPosition = .rear
-                }
-                else {
+                    
+                } else {
                     print("Error 2")
                     return }
             }
@@ -205,12 +202,8 @@ class ViewController: UIViewController {
             case .rear:
                 try switchToFrontCamera()
             }
-            
             captureSession.commitConfiguration()
         }
-    
-
-    @IBOutlet weak var cameraFrame: UIImageView!
 
     @IBAction func cameraButton(_ sender: Any) {
         photoSettings.flashMode = self.flashMode
@@ -276,4 +269,3 @@ extension ViewController: UINavigationControllerDelegate {
         
     }
 }
-
