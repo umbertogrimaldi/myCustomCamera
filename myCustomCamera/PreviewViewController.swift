@@ -16,14 +16,14 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     var centerPoint: CGPoint = CGPoint(x: 200, y: 400)
     
-//    var image: UIImage!
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         var insets = self.myPhotoCollectionView.contentInset
         let value = (self.view.frame.size.width - (self.myPhotoCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width) * 0.5
-        insets.left = value
-        insets.right = value
+        
+            insets.left = value
+            insets.right = value
+        
         self.myPhotoCollectionView.contentInset = insets
         self.myPhotoCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         myPhotoCollectionView.backgroundColor = UIColor.white
@@ -36,12 +36,18 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
         print(PhotoShared.shared.myPhotoArray.count)
         myPhotoCollectionView.delegate = self
         myPhotoCollectionView.dataSource = self
+        navigationController?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
     }
     
     
     @IBAction func retakeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        
         PhotoShared.shared.myPhotoArray.removeAll()
     }
     
@@ -115,5 +121,14 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
 
 }
 
+extension PreviewViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        if viewController is PreviewViewController {
+            viewController.tabBarController?.tabBar.isHidden = true
+        }
+    }
+}
 
 

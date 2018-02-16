@@ -34,9 +34,7 @@ class ViewController: UIViewController {
             flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
         }
     }
-    
     @IBOutlet weak var switchCameraButton: UIButton!
-    
     @IBOutlet weak var cameraFrame: UIImageView!
 
     
@@ -149,7 +147,6 @@ class ViewController: UIViewController {
             guard let currentCameraPosition = currentCameraPosition, captureSession.isRunning else { print ("errore");return }
             
             captureSession.beginConfiguration()
-            
             
             func switchToFrontCamera() throws {
                     let inputs = captureSession.inputs as [AVCaptureInput]
@@ -266,6 +263,5 @@ extension ViewController: UINavigationControllerDelegate {
             viewController.tabBarController?.tabBar.isHidden = true
             viewController.navigationController?.navigationBar.isHidden = true
         }
-        
     }
 }

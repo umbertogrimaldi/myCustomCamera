@@ -16,6 +16,7 @@
 		8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C37C2029FB42004BDB8B /* sharedPhoto.swift */; };
 		8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */; };
 		83215AD42035D88100343ED9 /* MySelfiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83215AD32035D88100343ED9 /* MySelfiesViewController.swift */; };
+		83215AD6203717C500343ED9 /* MySelfiesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		8317C37C2029FB42004BDB8B /* sharedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedPhoto.swift; sourceTree = "<group>"; };
 		8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		83215AD32035D88100343ED9 /* MySelfiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySelfiesViewController.swift; sourceTree = "<group>"; };
+		83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySelfiesDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +67,9 @@
 				8317C368202898B5004BDB8B /* AppDelegate.swift */,
 				8317C36A202898B5004BDB8B /* ViewController.swift */,
 				8317C37A20289CE0004BDB8B /* PreviewViewController.swift */,
-				8317C36C202898B5004BDB8B /* Main.storyboard */,
 				83215AD32035D88100343ED9 /* MySelfiesViewController.swift */,
+				83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */,
+				8317C36C202898B5004BDB8B /* Main.storyboard */,
 				8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */,
 				8317C37C2029FB42004BDB8B /* sharedPhoto.swift */,
 				8317C36F202898B5004BDB8B /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */,
 				8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */,
 				8317C369202898B5004BDB8B /* AppDelegate.swift in Sources */,
+				83215AD6203717C500343ED9 /* MySelfiesDetailsViewController.swift in Sources */,
 				8317C37B20289CE0004BDB8B /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
