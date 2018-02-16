@@ -235,6 +235,13 @@ class ViewController: UIViewController {
 }
 
 
+//MARK:- CAMERA POSITION ENUMERATION
+public enum CameraPosition {
+    case front
+    case rear
+}
+
+
 //MARK:- Extension ViewController to take photo
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
@@ -248,13 +255,6 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
         }
     }
 }
-
-
-public enum CameraPosition {
-    case front
-    case rear
-}
-
 
 // MARK:- Hidden TabBar and Nav bar
 
