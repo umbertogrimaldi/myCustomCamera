@@ -25,8 +25,6 @@ class ViewController: UIViewController {
     let photoSettings = AVCapturePhotoSettings()
     var flashMode = AVCaptureDevice.FlashMode.off
     
-    
-    
     var image: UIImage?
 
     
@@ -45,21 +43,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
         navigationController?.delegate = self
-        
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tabBarController?.tabBar.isHidden = true
-//        navigationController?.navigationBar.isHidden = true
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -95,12 +86,10 @@ class ViewController: UIViewController {
             
             device.unlockForConfiguration()
         }
-        
     }
     
     
     func setupInputOutput() {
-        
         
         if let rearCamera = self.backCamera {
 
@@ -130,7 +119,6 @@ class ViewController: UIViewController {
     
     
     func setupPreviewLayer() {
-        
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
@@ -156,7 +144,6 @@ class ViewController: UIViewController {
             
         case .none:
             return
-            
         }
     }
         
@@ -182,9 +169,7 @@ class ViewController: UIViewController {
                     captureSession.addInput(self.frontCameraInput!)
                     
                     self.currentCameraPosition = .front
-                }
-                    
-                else {
+                } else {
 //                    throw CameraControllerError.invalidOperation
                     print("Error4")
                     return
@@ -208,7 +193,6 @@ class ViewController: UIViewController {
                     
                     self.currentCameraPosition = .rear
                 }
-                    
                 else {
                     print("Error 2")
                     return }
@@ -227,7 +211,6 @@ class ViewController: UIViewController {
     
 
     @IBOutlet weak var cameraFrame: UIImageView!
-    
 
     @IBAction func cameraButton(_ sender: Any) {
         photoSettings.flashMode = self.flashMode
@@ -248,10 +231,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func dismissButton(_ sender: Any) {
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MySelfies") as! MySelfiesViewController
-//        self.present(nextViewController, animated:true, completion:nil)
         self.tabBarController?.selectedIndex = 0
     }
     
