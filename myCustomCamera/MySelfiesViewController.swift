@@ -14,12 +14,19 @@ class MySelfiesViewController: UITableViewController {
     @IBOutlet weak var firstCollection: UICollectionView!
     @IBOutlet weak var secondCollection: UICollectionView!
     
+    
+    var firstImageArray: [UIImage] = [#imageLiteral(resourceName: "Front Camera Icon"), #imageLiteral(resourceName: "flash"), #imageLiteral(resourceName: "close"),#imageLiteral(resourceName: "delete"), #imageLiteral(resourceName: "export"), #imageLiteral(resourceName: "export"), #imageLiteral(resourceName: "delete"), #imageLiteral(resourceName: "Video Camera Icon"), #imageLiteral(resourceName: "camera")]
+    
+    var secondImageArray: [UIImage] = [#imageLiteral(resourceName: "Front Camera Icon"), #imageLiteral(resourceName: "flash"), #imageLiteral(resourceName: "close"),#imageLiteral(resourceName: "delete"), #imageLiteral(resourceName: "export"), #imageLiteral(resourceName: "export"), #imageLiteral(resourceName: "delete"), #imageLiteral(resourceName: "Video Camera Icon"), #imageLiteral(resourceName: "camera"), #imageLiteral(resourceName: "delete"), #imageLiteral(resourceName: "flash"), #imageLiteral(resourceName: "flash"), #imageLiteral(resourceName: "camera"), #imageLiteral(resourceName: "Video Camera Icon"), #imageLiteral(resourceName: "close"), #imageLiteral(resourceName: "close"), #imageLiteral(resourceName: "close")]
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         firstCollection.dataSource = self
         firstCollection.delegate = self
-        
-        
         
          navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.17, green:0.67, blue:0.71, alpha:1.0)]
     }
@@ -89,21 +96,28 @@ class MySelfiesViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
 }
-
 
 extension MySelfiesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        if collectionView.tag == 1 {
+            return firstImageArray.count
+        } else {
+            return secondImageArray.count
+        }
+        
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        if collectionView.tag == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            return cell
+        } else {
+            
+            return cell
+        }
     }
-    
-    
+
+
 }
+
