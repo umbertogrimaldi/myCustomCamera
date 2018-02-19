@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2io-kG-cqJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sp6-ul-BQw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,31 +11,60 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="Lzt-d7-ud3">
+        <!--My Selfies View Controller-->
+        <scene sceneID="LIC-d1-1KP">
             <objects>
-                <viewController id="2io-kG-cqJ" customClass="HomeViewController" customModule="myCustomCamera" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jc4-0q-qL3">
+                <viewController storyboardIdentifier="MySelfies" id="bnJ-rg-Kwg" customClass="MySelfiesViewController" customModule="myCustomCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z44-km-nPv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpM-Cc-YYN">
-                                <rect key="frame" x="105" y="546" width="165" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWg-1N-jp8">
+                                <rect key="frame" x="183" y="244" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="START A NEW SESSION"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Eko-nw-gc7"/>
+                                    <segue destination="qs8-a0-Xao" kind="show" id="gbY-kU-ECZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="3Bc-Gs-vzE"/>
+                        <viewLayoutGuide key="safeArea" id="mwa-cX-Bwu"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ooo-ZR-C8e"/>
+                    <navigationItem key="navigationItem" id="LbK-zg-r2l"/>
+                    <connections>
+                        <segue destination="qs8-a0-Xao" kind="show" id="G7v-y4-as4"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1hI-yO-ooj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lb8-kS-Hyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167.19999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1702" y="-556"/>
+        </scene>
+        <!--My Selfies Details View Controller-->
+        <scene sceneID="uMJ-DW-Gty">
+            <objects>
+                <viewController id="qs8-a0-Xao" customClass="MySelfiesDetailsViewController" customModule="myCustomCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yn0-AP-5bJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igl-YO-H5o">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="share" image="export" id="rcv-IH-81b"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="tVS-ue-SkQ"/>
+                                    <barButtonItem title="Item" image="delete" id="DHT-Wh-dKe"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aIX-R8-yjY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dwA-FW-wzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2479" y="-556"/>
         </scene>
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
@@ -62,7 +91,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59E-OA-ak6">
-                                <rect key="frame" x="284" y="20" width="69" height="40"/>
+                                <rect key="frame" x="284" y="64" width="69" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="53" id="MnU-Wc-MB2"/>
                                     <constraint firstAttribute="height" constant="40" id="kZz-eE-uSv"/>
@@ -82,7 +111,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cue-GZ-EN9">
-                                <rect key="frame" x="16" y="22" width="40" height="40"/>
+                                <rect key="frame" x="16" y="66" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="4BK-XV-qKE"/>
                                     <constraint firstAttribute="height" constant="40" id="loo-7Y-mYN"/>
@@ -114,7 +143,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qg-dX-TEa">
-                                <rect key="frame" x="206" y="20" width="30" height="46"/>
+                                <rect key="frame" x="206" y="64" width="30" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="8xa-hp-mfz"/>
                                 </constraints>
@@ -152,7 +181,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1703" y="133"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="JT7-Kq-IEI">
+            <objects>
+                <viewController id="bhM-cX-KFH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xwZ-p0-5oo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aAL-Me-dHQ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="96N-Tl-J9Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weZ-yY-mGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="932"/>
         </scene>
         <!--Title-->
         <scene sceneID="y6E-T0-NZZ">
@@ -184,7 +229,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5nJ-mA-5eh">
-                                <rect key="frame" x="0.0" y="585" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="541" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kmu-cU-u7G" customClass="CenteredItemCollectionViewFlowLayout" customModule="myCustomCamera" customModuleProvider="target">
@@ -218,10 +263,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="E2e-mb-bFz" firstAttribute="leading" secondItem="RIu-xe-tvk" secondAttribute="leading" id="893-tD-fy1"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="leading" secondItem="QHE-uB-hOG" secondAttribute="leading" id="Cq8-Dm-T3I"/>
+                            <constraint firstAttribute="bottom" secondItem="E2e-mb-bFz" secondAttribute="bottom" id="DdQ-W9-GgJ"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="trailing" secondItem="QHE-uB-hOG" secondAttribute="trailing" id="ME7-hT-39v"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="top" secondItem="RIu-xe-tvk" secondAttribute="top" constant="66" id="Zxg-3d-QbU"/>
                             <constraint firstItem="LEG-nB-7LE" firstAttribute="bottom" secondItem="QHE-uB-hOG" secondAttribute="bottom" constant="-78" id="xXo-zC-XGg"/>
+                            <constraint firstAttribute="trailing" secondItem="E2e-mb-bFz" secondAttribute="trailing" id="zsj-D2-iEf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QHE-uB-hOG"/>
                     </view>
@@ -234,10 +282,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmZ-PN-1mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456.8" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2479.1999999999998" y="133.5832083958021"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6L0-lE-yI6">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sp6-ul-BQw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PZF-Z1-ATe">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Apq-6s-TGu" kind="relationship" relationship="viewControllers" id="yAm-nI-d9H"/>
+                        <segue destination="qfG-r7-zUL" kind="relationship" relationship="viewControllers" id="Hcn-12-vtl"/>
+                        <segue destination="bhM-cX-KFH" kind="relationship" relationship="viewControllers" id="PmQ-uu-XE4"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0GP-7P-Ygq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-542" y="134"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="qof-ta-q6j">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aoj-np-hK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qfG-r7-zUL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Camera" id="jbj-eg-H65"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h5O-mM-KEh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EEd-SN-ehO"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="990.39999999999998" y="133.13343328335833"/>
+        </scene>
+        <!--My Selfies-->
+        <scene sceneID="eny-AH-FyS">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djQ-KI-W58" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Apq-6s-TGu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Selfies" id="Lae-Fj-DQq"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PwT-ab-OOP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bnJ-rg-Kwg" kind="relationship" relationship="rootViewController" id="Ncf-3f-4qm"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="990" y="-556"/>
         </scene>
     </scenes>
     <resources>
+        <image name="delete" width="34" height="34"/>
+        <image name="export" width="34" height="34"/>
         <image name="icons8-cancel-50-2" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="G7v-y4-as4"/>
+    </inferredMetricsTieBreakers>
 </document>

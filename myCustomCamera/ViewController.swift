@@ -30,22 +30,19 @@ class ViewController: UIViewController {
    
 
     
-    @IBOutlet weak var flashButton: UIButton!{
+
+    //    MARK:- Outlets
+    @IBOutlet weak var flashButton: UIButton! {
         didSet{
             flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
         }
     }
-    
-    
     @IBOutlet weak var switchCameraButton: UIButton!
-    
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
+    @IBOutlet weak var cameraFrame: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
@@ -67,9 +64,7 @@ class ViewController: UIViewController {
     //    MARK:- FUNCTIONS
     
     func setupCaptureSession() {
-        
             captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        
     }
     
     
@@ -88,18 +83,15 @@ class ViewController: UIViewController {
             try? device.lockForConfiguration()
             if (device.isFocusModeSupported(.continuousAutoFocus)){
                 device.focusMode = .continuousAutoFocus
-            }else if (device.isFocusModeSupported(.autoFocus)){
+            } else if (device.isFocusModeSupported(.autoFocus)){
                 device.focusMode = .autoFocus
             }
-            
             device.unlockForConfiguration()
         }
-        
     }
     
     
     func setupInputOutput() {
-        
         
         if let rearCamera = self.backCamera {
 
@@ -109,9 +101,8 @@ class ViewController: UIViewController {
 
             self.currentCameraPosition = .rear
             self.switchCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
-        }
-
-            else if let frontCamera = self.frontCamera {
+            
+        } else if let frontCamera = self.frontCamera {
             self.frontCameraInput = try? AVCaptureDeviceInput(device: frontCamera)
             
             if captureSession.canAddInput(self.frontCameraInput!) { captureSession.addInput(self.frontCameraInput!) }
@@ -124,7 +115,6 @@ class ViewController: UIViewController {
             photoOutput = AVCapturePhotoOutput()
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
-       
     }
     
     
@@ -159,6 +149,7 @@ class ViewController: UIViewController {
         captureSession.startRunning()
     }
     
+    
     //    MARK: - buttons
     
     @IBAction func changeCamera(_ sender: Any) {
@@ -172,7 +163,6 @@ class ViewController: UIViewController {
             
         case .none:
             return
-            
         }
     }
         
@@ -226,9 +216,8 @@ class ViewController: UIViewController {
                     captureSession.addInput(self.backCameraInput!)
                     
                     self.currentCameraPosition = .rear
-                }
                     
-                else {
+                } else {
                     print("Error 2")
                     return }
             }
@@ -240,14 +229,8 @@ class ViewController: UIViewController {
             case .rear:
                 switchToFrontCamera()
             }
-            
             captureSession.commitConfiguration()
         }
-        
-    
-
-    @IBOutlet weak var cameraFrame: UIImageView!
-    
 
     @IBAction func cameraButton(_ sender: Any) {
         photoSettings.flashMode = self.flashMode
@@ -276,11 +259,8 @@ class ViewController: UIViewController {
     }
     
     
-
-    
     @IBAction func dismissButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        
+        self.tabBarController?.selectedIndex = 0
     }
     
     
@@ -288,6 +268,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+
+//MARK:- CAMERA POSITION ENUMERATION
+public enum CameraPosition {
+    case front
+    case rear
 }
 
 
@@ -306,10 +293,17 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
     }
 }
 
+// MARK:- Hidden TabBar and Nav bar
 
-public enum CameraPosition {
-    case front
-    case rear
+extension ViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        if viewController is ViewController {
+            viewController.tabBarController?.tabBar.isHidden = true
+            viewController.navigationController?.navigationBar.isHidden = true
+        }
+    }
 }
 
 public enum PhotoLayer{
