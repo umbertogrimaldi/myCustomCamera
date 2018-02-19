@@ -37,12 +37,13 @@ class PreviewViewController: UIViewController, UICollectionViewDelegate, UIColle
         myPhotoCollectionView.delegate = self
         myPhotoCollectionView.dataSource = self
         navigationController?.delegate = self
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
     }
     
     
@@ -127,8 +128,8 @@ extension PreviewViewController: UINavigationControllerDelegate {
         
         if viewController is PreviewViewController {
             viewController.tabBarController?.tabBar.isHidden = true
+            navigationController.navigationBar.isHidden = true
         }
     }
 }
-
 

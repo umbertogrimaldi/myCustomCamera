@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831703DB20381B97009328B1 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831703DA20381B96009328B1 /* TableViewCell.swift */; };
 		8317C369202898B5004BDB8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C368202898B5004BDB8B /* AppDelegate.swift */; };
 		8317C36B202898B5004BDB8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C36A202898B5004BDB8B /* ViewController.swift */; };
 		8317C36E202898B5004BDB8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317C36C202898B5004BDB8B /* Main.storyboard */; };
@@ -15,11 +16,13 @@
 		8317C37B20289CE0004BDB8B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C37A20289CE0004BDB8B /* PreviewViewController.swift */; };
 		8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C37C2029FB42004BDB8B /* sharedPhoto.swift */; };
 		8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */; };
-		83215AD42035D88100343ED9 /* MySelfiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83215AD32035D88100343ED9 /* MySelfiesViewController.swift */; };
 		83215AD6203717C500343ED9 /* MySelfiesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */; };
+		8399839620378644001BDF09 /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399839520378644001BDF09 /* FirstTableViewCell.swift */; };
+		8399839C2037A5A3001BDF09 /* MySelfiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8399839B2037A5A3001BDF09 /* MySelfiesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		831703DA20381B96009328B1 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8317C365202898B5004BDB8B /* myCustomCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myCustomCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317C368202898B5004BDB8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317C36A202898B5004BDB8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,8 +33,9 @@
 		8317C37A20289CE0004BDB8B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		8317C37C2029FB42004BDB8B /* sharedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedPhoto.swift; sourceTree = "<group>"; };
 		8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredItemCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		83215AD32035D88100343ED9 /* MySelfiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySelfiesViewController.swift; sourceTree = "<group>"; };
 		83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySelfiesDetailsViewController.swift; sourceTree = "<group>"; };
+		8399839520378644001BDF09 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
+		8399839B2037A5A3001BDF09 /* MySelfiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySelfiesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		831262D5203A3105007AD435 /* PreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				8317C37A20289CE0004BDB8B /* PreviewViewController.swift */,
+				8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */,
+			);
+			path = PreviewController;
+			sourceTree = "<group>";
+		};
 		8317C35C202898B5004BDB8B = {
 			isa = PBXGroup;
 			children = (
@@ -66,17 +79,26 @@
 			children = (
 				8317C368202898B5004BDB8B /* AppDelegate.swift */,
 				8317C36A202898B5004BDB8B /* ViewController.swift */,
-				8317C37A20289CE0004BDB8B /* PreviewViewController.swift */,
-				83215AD32035D88100343ED9 /* MySelfiesViewController.swift */,
+				8399839B2037A5A3001BDF09 /* MySelfiesViewController.swift */,
 				83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */,
 				8317C36C202898B5004BDB8B /* Main.storyboard */,
-				8317C380202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift */,
+				831262D5203A3105007AD435 /* PreviewController */,
+				8399839F2037BBA0001BDF09 /* TableViewCells */,
 				8317C37C2029FB42004BDB8B /* sharedPhoto.swift */,
-				8317C36F202898B5004BDB8B /* Assets.xcassets */,
 				8317C371202898B5004BDB8B /* LaunchScreen.storyboard */,
+				8317C36F202898B5004BDB8B /* Assets.xcassets */,
 				8317C374202898B5004BDB8B /* Info.plist */,
 			);
 			path = myCustomCamera;
+			sourceTree = "<group>";
+		};
+		8399839F2037BBA0001BDF09 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				8399839520378644001BDF09 /* FirstTableViewCell.swift */,
+				831703DA20381B96009328B1 /* TableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83215AD42035D88100343ED9 /* MySelfiesViewController.swift in Sources */,
+				8399839C2037A5A3001BDF09 /* MySelfiesViewController.swift in Sources */,
+				8399839620378644001BDF09 /* FirstTableViewCell.swift in Sources */,
 				8317C36B202898B5004BDB8B /* ViewController.swift in Sources */,
+				831703DB20381B97009328B1 /* TableViewCell.swift in Sources */,
 				8317C37D2029FB42004BDB8B /* sharedPhoto.swift in Sources */,
 				8317C381202BBA7E004BDB8B /* CenteredItemCollectionViewFlowLayout.swift in Sources */,
 				8317C369202898B5004BDB8B /* AppDelegate.swift in Sources */,

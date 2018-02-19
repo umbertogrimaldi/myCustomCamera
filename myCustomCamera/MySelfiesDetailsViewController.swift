@@ -9,9 +9,19 @@
 import UIKit
 
 class MySelfiesDetailsViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var photoImage: UIImageView!
+    
+    var photo: UIImage?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       photoImage.image = photo
+        
         navigationController?.delegate = self
         tabBarController?.tabBar.isHidden = true
     }
@@ -36,6 +46,7 @@ extension MySelfiesDetailsViewController: UINavigationControllerDelegate {
         if viewController is MySelfiesDetailsViewController {
             viewController.tabBarController?.tabBar.isHidden = true
         }
+        
     }
 }
 
