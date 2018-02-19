@@ -18,16 +18,16 @@ class ViewController: UIViewController {
     var frontCamera: AVCaptureDevice?
     var backCamera: AVCaptureDevice?
     var currentDevice: AVCaptureDevice?
-    
+    var photoLayer:CGRect?
     var photoOutput: AVCapturePhotoOutput?
-    
+    var currentLayer:PhotoLayer = .rectangular
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     let photoSettings = AVCapturePhotoSettings()
     var flashMode = AVCaptureDevice.FlashMode.off
-    
-    
-    
     var image: UIImage?
+    var rectangularFrame:CGRect?
+    var squaredFrame:CGRect?
+   
 
     
     @IBOutlet weak var flashButton: UIButton!{
@@ -49,10 +49,19 @@ class ViewController: UIViewController {
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
-        setupPreviewLayer()
+        
         startRunningCaptureSession()
+       
+        setupPreviewLayer()
+  
         
     }
+    
+    
+    @IBAction func switchFrame(_ sender: UIButton) {
+        setLayer()
+    }
+    
     
     
     //    MARK:- FUNCTIONS
@@ -119,12 +128,29 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    
+    func setLayer(){
+        switch self.currentLayer{
+        case .squared:
+            self.currentLayer = .rectangular
+            cameraPreviewLayer?.frame = rectangularFrame!
+        case .rectangular:
+            self.currentLayer = .squared
+            cameraPreviewLayer?.frame = squaredFrame!
+            
+        }
+       
+    }
+    
     func setupPreviewLayer() {
-        
+        squaredFrame = CGRect(x: 0, y:(view.bounds.height * 0.21889)-20, width: view.bounds.width, height: view.bounds.width)
+        rectangularFrame = CGRect(x:0,y:(view.bounds.height*0.133433)-20,width:view.bounds.width, height:view.bounds.width / 0.75)
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        cameraPreviewLayer?.frame = self.view.frame
+        cameraPreviewLayer?.frame = rectangularFrame!
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     
@@ -152,21 +178,22 @@ class ViewController: UIViewController {
         
 
         func switchCameras() throws {
-            guard let currentCameraPosition = currentCameraPosition, captureSession.isRunning else { print ("errore");return }
+            guard let currentCameraPosition = currentCameraPosition else {print("Camera position error"); return}
+            guard captureSession.isRunning else { print ("errore");return }
             
             captureSession.beginConfiguration()
             
           
             
             
-            func switchToFrontCamera() throws {
+            func switchToFrontCamera() {
                     let inputs = captureSession.inputs as [AVCaptureInput]
                     guard let rearCameraInput = self.backCameraInput, inputs.contains(rearCameraInput),
                     let frontCamera = self.frontCamera else {
                        print("Error3")
                         return}
                 
-                self.frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
+                self.frontCameraInput = try? AVCaptureDeviceInput(device: frontCamera)
                 
                 captureSession.removeInput(rearCameraInput)
                 
@@ -177,13 +204,13 @@ class ViewController: UIViewController {
                 }
                     
                 else {
-//                    throw CameraControllerError.invalidOperation
+//
                     print("Error4")
                     return
                 }
             }
             
-            func switchToRearCamera() throws {
+            func switchToRearCamera() {
                 let inputs = captureSession.inputs as [AVCaptureInput]
                 guard let frontCameraInput = self.frontCameraInput else{print("no front camera input"); return}
                 guard inputs.contains(frontCameraInput)else {print ("No contains"); return}
@@ -191,7 +218,7 @@ class ViewController: UIViewController {
                         print("no back camera")
                         return }
                 
-                self.backCameraInput = try AVCaptureDeviceInput(device: rearCamera)
+                self.backCameraInput = try? AVCaptureDeviceInput(device: rearCamera)
                 
                 captureSession.removeInput(frontCameraInput)
                 
@@ -208,10 +235,10 @@ class ViewController: UIViewController {
             
             switch currentCameraPosition {
             case .front:
-                try switchToRearCamera()
+                switchToRearCamera()
                 
             case .rear:
-                try switchToFrontCamera()
+                switchToFrontCamera()
             }
             
             captureSession.commitConfiguration()
@@ -226,17 +253,26 @@ class ViewController: UIViewController {
         photoSettings.flashMode = self.flashMode
         let uniCameraSetting = AVCapturePhotoSettings.init(from: photoSettings)
         photoOutput?.capturePhoto(with: uniCameraSetting, delegate: self)
+        
+        
     }
     
  
     @IBAction func flashButton(_ sender: Any) {
-        if self.flashMode == .on {
-           self.flashMode = .off
-            flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
-        } else {
+        switch self.flashMode{
+        case .on:
+            self.flashMode = .off
+            self.flashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
+        case .off :
+            self.flashMode = .auto
+            self.flashButton.setImage(nil, for: .normal)
+            self.flashButton.setTitle("Auto", for: .normal)
+        case .auto:
             self.flashMode = .on
-            flashButton.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
+            self.flashButton.setTitle(nil, for: .normal)
+            self.flashButton.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
         }
+      
     }
     
     
@@ -265,6 +301,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             image = UIImage(data: imageData)
             PhotoShared.shared.myPhotoArray.append(image!)
             print(PhotoShared.shared.myPhotoArray.count)
+            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
         }
     }
 }
@@ -275,3 +312,7 @@ public enum CameraPosition {
     case rear
 }
 
+public enum PhotoLayer{
+    case squared
+    case rectangular
+}
