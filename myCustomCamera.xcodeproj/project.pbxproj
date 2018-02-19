@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83085D07203B1FE500527B0D /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83085D06203B1FE500527B0D /* Collection.storyboard */; };
+		83085D09203B208700527B0D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83085D08203B208700527B0D /* Settings.storyboard */; };
 		831703DB20381B97009328B1 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831703DA20381B96009328B1 /* TableViewCell.swift */; };
 		8317C369202898B5004BDB8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C368202898B5004BDB8B /* AppDelegate.swift */; };
 		8317C36B202898B5004BDB8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C36A202898B5004BDB8B /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83085D06203B1FE500527B0D /* Collection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collection.storyboard; sourceTree = "<group>"; };
+		83085D08203B208700527B0D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		831703DA20381B96009328B1 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8317C365202898B5004BDB8B /* myCustomCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myCustomCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317C368202898B5004BDB8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				8399839B2037A5A3001BDF09 /* MySelfiesViewController.swift */,
 				83215AD5203717C500343ED9 /* MySelfiesDetailsViewController.swift */,
 				8317C36C202898B5004BDB8B /* Main.storyboard */,
+				83085D06203B1FE500527B0D /* Collection.storyboard */,
+				83085D08203B208700527B0D /* Settings.storyboard */,
 				831262D5203A3105007AD435 /* PreviewController */,
 				8399839F2037BBA0001BDF09 /* TableViewCells */,
 				8317C37C2029FB42004BDB8B /* sharedPhoto.swift */,
@@ -160,8 +166,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83085D07203B1FE500527B0D /* Collection.storyboard in Resources */,
 				8317C373202898B5004BDB8B /* LaunchScreen.storyboard in Resources */,
 				8317C370202898B5004BDB8B /* Assets.xcassets in Resources */,
+				83085D09203B208700527B0D /* Settings.storyboard in Resources */,
 				8317C36E202898B5004BDB8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
